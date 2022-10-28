@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="scripts/jquery.js" charset="utf-8"></script>
+        <script src="scripts/client.js" charset="utf-8"></script>
+
+        <link rel="stylesheet href=stylesheet.css">
+
+        <title>Weekend JQuery Salary Calculator</title>
+    </head>
+    <body>
+        <h1>Salary Calculator</h1>
+
+        <h2>Total Monthly Cost: $ </h2>
+
+        <form id="form-id">
+        <div>
+            <label for="empFirstNameInput"> First Name </label>
+            <textarea id="empFirstNameInput"></textarea>
+        </div>
+        <div>
+            <label for="empLastNameInput"> Last Name</label>
+            <textarea id="empLastNameInput"></textarea>
+        </div>
+        <div>
+            <label for="empIdInput"> ID </label>
+            <textarea id="empIdInput"></textarea>
+        </div>
+        <div>
+            <label for="empTitleInput"> Title </label>
+        <textarea id="empTitleInput"></textarea>
+        </div>
+        <div>
+        <label for="empAnnualSalaryInput"> Annual Salary </label>
+        <textarea id="empAnnualSalaryInput"></textarea>
+        </div>
+        </form>
+
+        <button id="addEmpBtn" type="Add Employee">Submit</button>
+
+        <h1>Employees</h1>
+        <table id="empTable">
+        <tbody>
+            <tr>
+                <td>No Employees Yet!</td>
+            </tr>
+        </tbody>
+        </table>
+    </body>
+</html>
