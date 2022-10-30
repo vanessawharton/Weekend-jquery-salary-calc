@@ -10,9 +10,13 @@
         <title>Weekend JQuery Salary Calculator</title>
     </head>
     <body>
-        <header>Salary Calculator</header>
+        <header>
+            <h1>Salary Calculator</h1>
+        </header>
 
-        <nav>Add Employee</nav>
+        <nav>
+            <h2>Add Employee</h2>
+        </nav>
 
         <form id="form-id">
             <section>
@@ -24,15 +28,26 @@
             </section>
         </form>
 
-        <button id="addEmpBtn" type="Add Employee">Submit</button>
+        <div>
+            <button id="addEmpBtn" type="Add Employee">Submit</button>
+        </div>
 
         <h1>Employees</h1>
-        <table id="empTable">
-            <tbody>
+        <table id="empTableHeader">
+            <table>
                 <tr>
-                    <td>No Employees Yet!</td>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Annual Salary</th>
                 </tr>
-            </tbody>
+            </table>
+
+        <table id="empTable">
+            <tr>
+                <td>No Employees Yet!</td>
+            </tr>
         </table>
 
         <h2>Total Monthly Cost: $ </h2>

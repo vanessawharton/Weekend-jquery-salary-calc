@@ -91,12 +91,12 @@ function render() {
 
     for (let emp of employeeList){
         $('#empTable').append(`
-            <tr>
+            <tr>    
                 <td>${emp.empFirstName}</td>
                 <td>${emp.empLastName}</td>
                 <td>${emp.empId}</td>
                 <td>${emp.empTitle}</td>
-                <td>${emp.empAnnualSalary}</td>
+                <salarytd>${emp.empAnnualSalary}</salarytd>
                 <td>    
                     <button class="delete-btn">Delete</button>
                 </td>
