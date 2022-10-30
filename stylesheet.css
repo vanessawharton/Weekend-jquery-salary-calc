@@ -1,39 +1,111 @@
-header{
-
-}
-
-nav{
-
-}
-
-section{
-
-}
-
-table {
-    grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-    grid-template-rows: 20% 20% 20% 20% 20%;
-    border: 5px solid;
-    width: 80%;
+body{
+    border: 1px solid;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 h1 {
-
+    text-align: center;
+    background-color: grey;
+    color: white;
+    padding: 20px;
+    margin-top: 0px;
 }
 
 h2{
-
-}
-
-button{
-
-}
-
-td{
     text-align: left;
-    padding: 15px;
+    padding-top: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
 }
 
-salarytd{
+h3{
     text-align: right;
+    padding-right: 20px;
 }
+
+#form-id {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: space-between;
+    gap: 30px;
+}
+
+#addEmpBtn {
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin:  25px;
+    float: right;
+}
+
+#headerTable th {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(168, 171, 169);
+}
+
+#headerTable th:nth-child(1){
+    width: 20%;
+}
+
+#headerTable th:nth-child(2){
+    width: 20%;
+}
+
+#headerTable th:nth-child(3){
+    width: 20%;
+}
+
+#headerTable th:nth-child(4){
+    width: 20%;
+}
+
+#headerTable th:nth-child(4){
+    width: 20%;
+}
+
+#empTable tr {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 5px solid black;
+    padding: 20px;
+    text-align: left;
+}
+
+#empTable td:nth-child(1){
+    width: 20%;
+}
+
+#empTable td:nth-child(2){
+    width: 20%;
+}
+
+#empTable td:nth-child(3){
+    width: 15%;
+}
+
+#empTable td:nth-child(4){
+    width: 15%;
+}
+
+#empTable td:nth-child(4){
+    width: 15%;
+}
+
+#empTable td:nth-child(4){
+    width: 15%;
+    align-self: center;
+}
+
+#empTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#empTable tr:hover {background-color: rgb(200, 199, 199);}

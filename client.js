@@ -1,14 +1,3 @@
-// Using the stored information, calculate monthly costs and append this to the to DOM. 
-// If the total monthly cost exceeds $20,000, add a red background color to the total monthly cost.
-
-// For Base mode, delete button does **not** need to remove that Employee's salary from the reported total.
-
-// ## Stretch Mode
-// Add styling or extra functionality that fits with the theme of this assignment.
-// Once the employee is deleted, update the _Total Monthly Cost_ section on the page to reflect the employee's removal. 
-// _HINT:_ You will need to figure out which employee was removed, in order to subtract their salary from the total. 
-// Consider using `.text()` as a getter, or look into jQuery's `.data()` function. This is tricky! 
-
 $(document).ready(readyNow);
 
 // Global Variables
@@ -21,7 +10,7 @@ let employeeList = [
     {   empFirstName: 'Maurice',
         empLastName: 'Moss',
         empId: 8724,
-        empTitle: 'Quality Assurance',
+        empTitle: 'Support Team',
         empAnnualSalary: 58000},
     {   empFirstName: 'Roy',
         empLastName: 'Smith',
@@ -29,24 +18,34 @@ let employeeList = [
         empTitle: 'Quality Assurance',
         empAnnualSalary: 48000}
 ];
-let annualTotalValue = 0;
+
 
 function readyNow() {
     console.log("DOM is loaded!");
     $('#addEmpBtn').on('click', addEmp);
     $('#empTable').on('click', '.delete-btn', removeEmp);
-// render();
 } // end readyNow
 
-function calcMonthlyCost (){
-    let sum = 0;
-    array.forEach(emp.empAnnualSalary); {
-        sum += ((emp.empAnnualSalary[annualSalary]) / 12) ?? 0;
-    };
-    return sum;
+function totalMonthlySalaries() {
+    let total = 0;
+    for (let i = 0; i< employeeList.length; i++){
+        total = (total + employeeList[i].empAnnualSalary) / 12;
+    }
+    return total;
+}
 
-    $('#calcId').append(`${sum}`);
+function calcMonthlyCost (){
+    for (let key of employeeList){
+        console.log(key, employeeList[key]);
+    }
+// $('#h3').append(`"Total Monthly $" ${sum}`);
 } // end calMonthlyCost
+
+function overBudget(){
+    if (sum > 20000){
+        $(document).css('background-color', 'red');
+    }
+} // end overBudget
 
 function checkInputs(){
     let formComplete = $("#empIdInput").length;
@@ -96,7 +95,7 @@ function render() {
                 <td>${emp.empLastName}</td>
                 <td>${emp.empId}</td>
                 <td>${emp.empTitle}</td>
-                <salarytd>${emp.empAnnualSalary}</salarytd>
+                <td>${emp.empAnnualSalary}</td>
                 <td>    
                     <button class="delete-btn">Delete</button>
                 </td>
@@ -104,6 +103,8 @@ function render() {
         `);
     }
     }
+    calcMonthlyCost();
+    totalMonthlySalaries();
 } // end render
 
 function removeEmp(){ 
