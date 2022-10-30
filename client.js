@@ -1,23 +1,7 @@
 $(document).ready(readyNow);
 
 // Global Variables
-let employeeList = [
-    {   empFirstName: 'Jen',
-        empLastName: 'Barber',
-        empId: 4521,
-        empTitle: 'Team Lead',
-        empAnnualSalary: 80000},
-    {   empFirstName: 'Maurice',
-        empLastName: 'Moss',
-        empId: 8724,
-        empTitle: 'Support Team',
-        empAnnualSalary: 58000},
-    {   empFirstName: 'Roy',
-        empLastName: 'Smith',
-        empId: 9623,
-        empTitle: 'Quality Assurance',
-        empAnnualSalary: 48000}
-];
+let employeeList = [];
 let annualSalary = 0;
 let totalAnnualSalaries = 0;
 
@@ -47,7 +31,7 @@ function addEmp() {
     if (Object.values(emp).includes('')){
         console.log("Form not complete");
         $('.errorMsg').append(`
-        <h4>All form entries must be added to submit<h4>`)
+        <h4>All form entries must be complete in order to submit!<h4>`)
     }    
     else {
         // add employee to array
@@ -81,7 +65,7 @@ function render() {
                 <td>${emp.empLastName}</td>
                 <td>${emp.empId}</td>
                 <td>${emp.empTitle}</td>
-                <td>${emp.empAnnualSalary}</td>
+                <td>$${emp.empAnnualSalary}</td>
                 <td>    
                     <button class="delete-btn">Delete</button>
                 </td>
@@ -99,7 +83,7 @@ function render() {
 function calcMonthlyCost (){
     // resetting total and formatting
     $('.sumContainer').empty();
-    $('footer').css('background-color', 'rgba(255, 235, 205, 0.271)');
+    $('footer').css('background-color', 'white');
 
     // setting variable to round up to nearest dollar to account for months in year
     let monthlySalary = Math.round(annualSalary/12);
@@ -121,7 +105,7 @@ function removeEmp(){
 
     // removing employee object from array
     for (let i=0; i < employeeList.length; i++){
-        if (empToRemove === `${employeeList[i].empFirstName}${employeeList[i].empLastName}${employeeList[i].empId}${employeeList[i].empTitle}${employeeList[i].empAnnualSalary}`){
+        if (empToRemove === `${employeeList[i].empFirstName}${employeeList[i].empLastName}${employeeList[i].empId}${employeeList[i].empTitle}$${employeeList[i].empAnnualSalary}`){
             employeeList.splice(i, 1);
         }
     }
