@@ -18,63 +18,45 @@ let employeeList = [
         empTitle: 'Quality Assurance',
         empAnnualSalary: 48000}
 ];
-
+let annualSalary = 0;
+let totalAnnualSalaries = 0;
 
 function readyNow() {
     console.log("DOM is loaded!");
+
+    // click listeners
     $('#addEmpBtn').on('click', addEmp);
-    $('#empTable').on('click', '.delete-btn', removeEmp);
+    $('.table').on('click', '.delete-btn', removeEmp);
 } // end readyNow
 
-function totalMonthlySalaries() {
-    let total = 0;
-    for (let i = 0; i< employeeList.length; i++){
-        total = (total + employeeList[i].empAnnualSalary) / 12;
-    }
-    return total;
-}
-
-function calcMonthlyCost (){
-    for (let key of employeeList){
-        console.log(key, employeeList[key]);
-    }
-// $('#h3').append(`"Total Monthly $" ${sum}`);
-} // end calMonthlyCost
-
-function overBudget(){
-    if (sum > 20000){
-        $(document).css('background-color', 'red');
-    }
-} // end overBudget
-
-function checkInputs(){
-    let formComplete = $("#empIdInput").length;
-    // ADD THE REST OF THE INPUTS
-
-    if (formComplete > 0){
-        return true
-    } else
-         //ERROR MESSAGE: NEED TO COMPLETE ALL FIELDS OF FORM
-        return false
-} // end checkInputs
-
 function addEmp() {
-    checkInputs();
     console.log('Attempting to add employee');
+    $('.errorMsg').empty();
 
-    if (checkInputs() === true){
-        let emp = {
-            empFirstName: $('#empFirstNameInput').val(),
-            empLastName: $('#empLastNameInput').val(),
-            empId: $('#empIdInput').val(),
-            empTitle: $('#empTitleInput').val(),
-            empAnnualSalary: $('#empAnnualSalaryInput').val()
-        };
+    // pull values from DOM to create employee object
+    let emp = {
+        empFirstName: $('#empFirstNameInput').val(),
+        empLastName: $('#empLastNameInput').val(),
+        empId: $('#empIdInput').val(),
+        empTitle: $('#empTitleInput').val(),
+        empAnnualSalary: $('#empAnnualSalaryInput').val()
+    };
+
+    // check to make sure each input on form is entered
+    // error message if incomplete
+    if (Object.values(emp).includes('')){
+        console.log("Form not complete");
+        $('.errorMsg').append(`
+        <h4>All form entries must be added to submit<h4>`)
+    }    
+    else {
+        // add employee to array
         employeeList.push(emp);
         console.log(employeeList);
 
         render();
-    
+
+        // clear inputs
         $('#empFirstNameInput').val("");
         $('#empLastNameInput').val("");
         $('#empIdInput').val("");
@@ -85,11 +67,11 @@ function addEmp() {
 
 function render() {
     console.log('rendering');
-    if (employeeList.length > 0){
-        $('#empTable').empty();
+    $('#tableData').empty();
+    annualSalary = 0;
 
     for (let emp of employeeList){
-        $('#empTable').append(`
+        $('#tableData').append(`
             <tr>    
                 <td>${emp.empFirstName}</td>
                 <td>${emp.empLastName}</td>
@@ -101,32 +83,47 @@ function render() {
                 </td>
             </tr>
         `);
+        annualSalary += Number(emp.empAnnualSalary);
+        console.log('Annual Salary is:', annualSalary);
     }
-    }
+
     calcMonthlyCost();
-    totalMonthlySalaries();
 } // end render
 
+function calcMonthlyCost (){
+    let monthlySalary = Math.round(annualSalary/12);
+
+    $('.sumContainer').append(`
+        <h3>Total Monthly: $${monthlySalary}</h3>`);
+
+    if (monthlySalary > 20000){
+        $('#footer').css('background-color', 'red');
+    }
+    console.log('calculating monthly cost:', monthlySalary);
+} // end calcMonthlyCost
+
 function removeEmp(){ 
-    console.log('in removeEmp');
+    console.log('removing employee from table ');
 
     let empToRemove = $(this)
         .parent()
         .siblings()
-        .last()
-        .val();
+        .text();
     console.log(empToRemove);
 
-    let newEmployeeList= [];
+    for (let i=0; i < employeeList.length; i++){
+        if (empToRemove === `
+            ${employeeList[i].empFirstName}
+            ${employeeList[i].empLastName}
+            ${employeeList[i].empId}
+            ${employeeList[i].empTitle}
+            ${employeeList[i].empAnnualSalary}`){
 
-    for (let emp of employeeList){
-        if (emp.empId !== empToRemove.empId){
-            newEmployeeList.push(emp);
+            employeeList.splice(i, 1);
         }
     }
 
-    employeeList = newEmployeeList;
-    console.log('New Employee List is:', newEmployeeList);
+    console.log('New Employee List is:', employeeList);
 
     render();
 } // end removeEmp

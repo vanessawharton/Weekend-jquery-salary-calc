@@ -1,6 +1,7 @@
 body{
     border: 1px solid;
     font-family:Arial, Helvetica, sans-serif;
+    background-color: rgba(255, 235, 205, 0.271);
 }
 
 h1 {
@@ -19,7 +20,7 @@ h2{
     padding-bottom: 5px;
 }
 
-h3{
+footer {
     text-align: right;
     padding-right: 20px;
 }
@@ -42,7 +43,7 @@ h3{
     float: right;
 }
 
-#headerTable th {
+.table th {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
@@ -52,60 +53,18 @@ h3{
     background-color: rgb(168, 171, 169);
 }
 
-#headerTable th:nth-child(1){
-    width: 20%;
-}
-
-#headerTable th:nth-child(2){
-    width: 20%;
-}
-
-#headerTable th:nth-child(3){
-    width: 20%;
-}
-
-#headerTable th:nth-child(4){
-    width: 20%;
-}
-
-#headerTable th:nth-child(4){
-    width: 20%;
-}
-
-#empTable tr {
-    table-layout: fixed;
+.tableContainer {
     width: 100%;
+    margin: 4em 12.5%;
+}
+
+.tableData tr {
     border-collapse: collapse;
     border: 5px solid black;
     padding: 20px;
     text-align: left;
 }
 
-#empTable td:nth-child(1){
-    width: 20%;
-}
+.tableData tr:nth-child(even){background-color: #f2f2f2;}
 
-#empTable td:nth-child(2){
-    width: 20%;
-}
-
-#empTable td:nth-child(3){
-    width: 15%;
-}
-
-#empTable td:nth-child(4){
-    width: 15%;
-}
-
-#empTable td:nth-child(4){
-    width: 15%;
-}
-
-#empTable td:nth-child(4){
-    width: 15%;
-    align-self: center;
-}
-
-#empTable tr:nth-child(even){background-color: #f2f2f2;}
-
-#empTable tr:hover {background-color: rgb(200, 199, 199);}
+.tableData tr:hover {background-color: rgb(200, 199, 199);}
