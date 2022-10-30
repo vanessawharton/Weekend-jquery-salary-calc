@@ -53,7 +53,8 @@ function addEmp() {
         // add employee to array
         employeeList.push(emp);
         console.log(employeeList);
-
+        
+        // add to DOM
         render();
 
         // clear inputs
@@ -67,9 +68,12 @@ function addEmp() {
 
 function render() {
     console.log('rendering');
+
+    // clearing out past data
     $('#tableData').empty();
     annualSalary = 0;
 
+    // loop to pull properties of all employee objects
     for (let emp of employeeList){
         $('#tableData').append(`
             <tr>    
@@ -83,47 +87,44 @@ function render() {
                 </td>
             </tr>
         `);
+
+        // calculating total annual salaries based on looped array
         annualSalary += Number(emp.empAnnualSalary);
         console.log('Annual Salary is:', annualSalary);
     }
-
+    // find monthly cost and update to DOM
     calcMonthlyCost();
 } // end render
 
 function calcMonthlyCost (){
+    // resetting total and formatting
+    $('.sumContainer').empty();
+    $('footer').css('background-color', 'rgba(255, 235, 205, 0.271)');
+
+    // setting variable to round up to nearest dollar to account for months in year
     let monthlySalary = Math.round(annualSalary/12);
 
+    // moving the total to DOM
     $('.sumContainer').append(`
         <h3>Total Monthly: $${monthlySalary}</h3>`);
 
+    // if budget is met, formatting to call out
     if (monthlySalary > 20000){
-        $('#footer').css('background-color', 'red');
+        $('footer').css('background-color', 'red');
     }
     console.log('calculating monthly cost:', monthlySalary);
 } // end calcMonthlyCost
 
 function removeEmp(){ 
-    console.log('removing employee from table ');
+    // setting employee object based on click
+    let empToRemove = $(this).parent().siblings().text();
 
-    let empToRemove = $(this)
-        .parent()
-        .siblings()
-        .text();
-    console.log(empToRemove);
-
+    // removing employee object from array
     for (let i=0; i < employeeList.length; i++){
-        if (empToRemove === `
-            ${employeeList[i].empFirstName}
-            ${employeeList[i].empLastName}
-            ${employeeList[i].empId}
-            ${employeeList[i].empTitle}
-            ${employeeList[i].empAnnualSalary}`){
-
+        if (empToRemove === `${employeeList[i].empFirstName}${employeeList[i].empLastName}${employeeList[i].empId}${employeeList[i].empTitle}${employeeList[i].empAnnualSalary}`){
             employeeList.splice(i, 1);
         }
     }
-
-    console.log('New Employee List is:', employeeList);
 
     render();
 } // end removeEmp
