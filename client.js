@@ -1,10 +1,7 @@
+// Using the stored information, calculate monthly costs and append this to the to DOM. 
+// If the total monthly cost exceeds $20,000, add a red background color to the total monthly cost.
 
-// A 'Submit' button should collect the form information, store the information to calculate monthly costs, 
-// append information to the DOM and clear the input fields. Using the stored information, calculate monthly costs 
-// and append this to the to DOM. If the total monthly cost exceeds $20,000, add a red background color to the total monthly cost.
-
-// Create a delete button that removes an employee from the DOM. 
-// For Base mode, it does **not** need to remove that Employee's salary from the reported total.
+// For Base mode, delete button does **not** need to remove that Employee's salary from the reported total.
 
 // ## Stretch Mode
 // Add styling or extra functionality that fits with the theme of this assignment.
@@ -14,32 +11,51 @@
 
 $(document).ready(readyNow);
 
-let employeeList = [];
+// Global Variables
+let employeeList = [
+    {   empFirstName: 'Jen',
+        empLastName: 'Barber',
+        empId: 4521,
+        empTitle: 'Team Lead',
+        empAnnualSalary: 80000},
+    {   empFirstName: 'Maurice',
+        empLastName: 'Moss',
+        empId: 8724,
+        empTitle: 'Quality Assurance',
+        empAnnualSalary: 58000},
+    {   empFirstName: 'Roy',
+        empLastName: 'Smith',
+        empId: 9623,
+        empTitle: 'Quality Assurance',
+        empAnnualSalary: 48000}
+];
 let annualTotalValue = 0;
-
-// function calculateGarageValue (price, array){
-//   let sum = 0;
-//   array.forEach(car.carPrice); {
-//     sum += car.carPrice[price] ?? 0;
-//   };
-//   return sum;
-// };
 
 function readyNow() {
     console.log("DOM is loaded!");
     $('#addEmpBtn').on('click', addEmp);
     $('#empTable').on('click', '.delete-btn', removeEmp);
-    render();
+// render();
 } // end readyNow
 
+function calcMonthlyCost (){
+    let sum = 0;
+    array.forEach(emp.empAnnualSalary); {
+        sum += ((emp.empAnnualSalary[annualSalary]) / 12) ?? 0;
+    };
+    return sum;
+
+    $('#calcId').append(`${sum}`);
+} // end calMonthlyCost
+
 function checkInputs(){
-    let formComplete = $("#empIdIput").length;
+    let formComplete = $("#empIdInput").length;
     // ADD THE REST OF THE INPUTS
 
-    if (formComplete !== 0){
+    if (formComplete > 0){
         return true
     } else
-        //ERROR MESSAGE: NEED TO COMPLETE ALL FIELDS OF FORM
+         //ERROR MESSAGE: NEED TO COMPLETE ALL FIELDS OF FORM
         return false
 } // end checkInputs
 
@@ -47,39 +63,40 @@ function addEmp() {
     checkInputs();
     console.log('Attempting to add employee');
 
-    if (checkInputs === true){
+    if (checkInputs() === true){
         let emp = {
             empFirstName: $('#empFirstNameInput').val(),
             empLastName: $('#empLastNameInput').val(),
             empId: $('#empIdInput').val(),
             empTitle: $('#empTitleInput').val(),
-            empAnnSalary: $('#empAnnualSalaryInput').val()
+            empAnnualSalary: $('#empAnnualSalaryInput').val()
         };
-    employees.push(emp);
-    console.log(employees);
+        employeeList.push(emp);
+        console.log(employeeList);
 
-    render();
+        render();
     
-    $('#empFirstNameInput').val("");
-    $('#empLastNameInput').val("");
-    $('#empIdInput').val("");
-    $('#empTitleInput').val("");
-    $('#empAnnualSalaryInput').val("");
+        $('#empFirstNameInput').val("");
+        $('#empLastNameInput').val("");
+        $('#empIdInput').val("");
+        $('#empTitleInput').val("");
+        $('#empAnnualSalaryInput').val("");
     }
 } // end addEmp
 
 function render() {
-    if (employeeList.length !== 0){
+    console.log('rendering');
+    if (employeeList.length > 0){
         $('#empTable').empty();
 
     for (let emp of employeeList){
         $('#empTable').append(`
             <tr>
-                <td>${car.carImg}</td>
-                <td>${car.carYear}</td>
-                <td>${car.carMake}</td>
-                <td>${car.carModel}</td>
-                <td>${car.carPrice}</td>
+                <td>${emp.empFirstName}</td>
+                <td>${emp.empLastName}</td>
+                <td>${emp.empId}</td>
+                <td>${emp.empTitle}</td>
+                <td>${emp.empAnnualSalary}</td>
                 <td>    
                     <button class="delete-btn">Delete</button>
                 </td>
@@ -102,7 +119,7 @@ function removeEmp(){
     let newEmployeeList= [];
 
     for (let emp of employeeList){
-        if (emp.empId !== empToRemove){
+        if (emp.empId !== empToRemove.empId){
             newEmployeeList.push(emp);
         }
     }

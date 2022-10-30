@@ -2,39 +2,40 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script src="scripts/jquery.js" charset="utf-8"></script>
-        <script src="scripts/client.js" charset="utf-8"></script>
+        <script src="jquery.js" charset="utf-8"></script>
+        <script src="client.js" charset="utf-8"></script>
 
         <link rel="stylesheet href=stylesheet.css">
 
         <title>Weekend JQuery Salary Calculator</title>
     </head>
     <body>
-        <h1>Salary Calculator</h1>
+        <header>Salary Calculator</header>
 
-        <h2>Add Employee</h2>
+        <nav>Add Employee</nav>
 
         <form id="form-id">
-            <div>
+            <section>
                 <input placeholder="First Name" id= "empFirstNameInput" />
                 <input placeholder="Last Name" id= "empLastNameInput" />
                 <input placeholder="ID" id= "empIdInput" />
                 <input placeholder="Title" id= "empTitleInput" />
                 <input placeholder="Annual Salary" id= "empAnnualSalaryInput" />
-            </div>
+            </section>
         </form>
 
         <button id="addEmpBtn" type="Add Employee">Submit</button>
 
         <h1>Employees</h1>
         <table id="empTable">
-        <tbody>
-            <tr>
-                <td>No Employees Yet!</td>
-            </tr>
-        </tbody>
+            <tbody>
+                <tr>
+                    <td>No Employees Yet!</td>
+                </tr>
+            </tbody>
         </table>
 
         <h2>Total Monthly Cost: $ </h2>
+        <form id="calcId"></form>
     </body>
 </html>
